@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+
+  backend:
+    container_name: FastApiReact
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./backend/app:/app
+    environment:
+      - DATABASE_URL=postgresql://name:password@host/db_name
+      - BACKEND_CORS_ORIGINS=["http://localhost:3000","http://localhost:8000"]
