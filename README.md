@@ -42,7 +42,7 @@ To use this template, make sure you have the following installed on your system:
 
     - Install the dependencies <br> `pip install -r ../requirements.txt`
     
-    - Pre-commit instalation <br> `pre-commit install'
+    - Pre-commit instalation <br> `pre-commit install`
 
     - Run server <br> `uvicorn main:app --reload`
 
