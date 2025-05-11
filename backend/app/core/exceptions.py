@@ -3,7 +3,7 @@ from fastapi import status
 
 
 def user_username_exists() -> HTTPException:
-    username_exception = HTTPException(
+    username_exception: HTTPException = HTTPException(
         status_code=status.HTTP_400_BAD_REQUEST,
         detail="The given username already exists",
     )
@@ -11,7 +11,7 @@ def user_username_exists() -> HTTPException:
 
 
 def user_must_be_admin() -> HTTPException:
-    authority_exception = HTTPException(
+    authority_exception: HTTPException = HTTPException(
         status_code=status.HTTP_403_FORBIDDEN,
         detail="Authority failed",
     )
@@ -19,7 +19,7 @@ def user_must_be_admin() -> HTTPException:
 
 
 def get_user_exception() -> HTTPException:
-    credentials_exception = HTTPException(
+    credentials_exception: HTTPException = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Incorrect password or email",
         headers={"WWW-Authenticate": "Bearer"},
@@ -28,7 +28,7 @@ def get_user_exception() -> HTTPException:
 
 
 def object_does_not_exist() -> HTTPException:
-    object_exception = HTTPException(
+    object_exception: HTTPException = HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail="Object does not exists",
         headers={"WWW-Authenticate": "Bearer"},
@@ -36,7 +36,17 @@ def object_does_not_exist() -> HTTPException:
     return object_exception
 
 
+def custom_exception(detail: str = "Something went wrong.") -> HTTPException:
+    authority_exception: HTTPException = HTTPException(
+        status_code=status.HTTP_400_BAD_REQUEST,
+        detail=detail,
+    )
+    return authority_exception
+
+
 def no_permission() -> HTTPException:
-    permission_exception = HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission")
+    permission_exception: HTTPException = HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN, detail="No permission"
+    )
 
     return permission_exception

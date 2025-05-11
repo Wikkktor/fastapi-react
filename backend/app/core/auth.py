@@ -42,12 +42,12 @@ def create_token(
 ) -> str:
     payload = {}
     if lifetime:
-        expire = datetime.utcnow() + lifetime
+        expire = datetime.now() + lifetime
     else:
-        expire = datetime.utcnow() + timedelta(days=7)
+        expire = datetime.now() + timedelta(days=7)
     payload["type"] = token_type
     payload["exp"] = expire
-    payload["iat"] = datetime.utcnow()
+    payload["iat"] = datetime.now()
     payload["sub"] = str(sub)
     return jwt.encode(payload, os.getenv("TOKEN"), algorithm=os.getenv("ALGORYTM"))
 

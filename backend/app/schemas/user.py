@@ -17,13 +17,12 @@ class UserCreate(UserBase):
 
 
 # Properties to receive via API on update
-class UserUpdate(UserBase):
-    ...
+class UserUpdate(UserBase): ...
 
 
 # Additional properties stored in DB but not returned by API
 class UserInDB(UserBase):
-    id: Optional[int] = None
+    id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
